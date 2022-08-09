@@ -1,0 +1,15 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: profileName
+  owner:
+    kind: User
+    name: userid@email.com
+
+  resourceQuotaSpec:
+   hard:
+     cpu: "6"
+     memory: "16Gi"
+     requests.nvidia.com/gpu: "1"
+     persistentvolumeclaims: "4"
+     requests.storage: "50Gi"
