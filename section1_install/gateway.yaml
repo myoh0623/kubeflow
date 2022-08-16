@@ -14,8 +14,8 @@ spec:
       number: 80
       protocol: HTTP
     # Upgrade HTTP to HTTPS
-    # tls:
-    #   httpsRedirect: true
+    tls:
+      httpsRedirect: true
   - hosts:
     - "*"
     port:
