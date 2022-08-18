@@ -34,7 +34,7 @@ sudo mv kustomize /usr/local/bin
 
 # autocomplete k8s
 
-sudo pt-get install bash-completion -y
+sudo apt-get install bash-completion -y
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
