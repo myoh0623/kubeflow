@@ -2,7 +2,7 @@
 apiVersion: "serving.kubeflow.org/v1beta1"
 kind: "InferenceService"
 metadata:
-  name: "flower-sample2"
+  name: "flower-sample"
   namespace: kubeflow-user-example-com
 spec:
   predictor:
