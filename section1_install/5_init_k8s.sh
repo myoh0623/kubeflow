@@ -10,8 +10,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl cluster-info
 
 # CNI
-https://raw.githubusercontent.com/cilium/cilium/v1.9.9/install/kubernetes/quick-install.yaml
-kubectl get pods -n kube-system --selector=k8s-app=cilium
+# kubectl create -f https://raw.githubusercontent.com/cilium/cilium/v1.9.9/install/kubernetes/quick-install.yaml
+# kubectl get pods -n kube-system --selector=k8s-app=cilium
+
+kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml 
+kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
+
 
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta6/nvidia-device-plugin.yml
@@ -34,6 +38,8 @@ sudo chmod 777 kustomize
 sudo mv kustomize /usr/local/bin
 
 # autocomplete k8s
+kubectl get pods -A
+
 
 sudo apt-get install bash-completion -y
 echo 'source <(kubectl completion bash)' >>~/.bashrc
