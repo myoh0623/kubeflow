@@ -26,8 +26,8 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 kubectl get sc
 
 # install kusomize 
-wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.10.0/kustomize_v3.10.0_linux_amd64.tar.gz
-tar -zxvf kustomize_v3.10.0_linux_amd64.tar.gz
+wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
+mv kustomize_3.2.0_linux_amd64 kustomize
 sudo chmod 777 kustomize
 sudo mv kustomize /usr/local/bin
 
