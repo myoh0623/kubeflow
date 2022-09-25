@@ -9,7 +9,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl cluster-info
 
-kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.13.0/Documentation/kube-flannel.yml
+# CNI
+https://raw.githubusercontent.com/cilium/cilium/v1.9.9/install/kubernetes/quick-install.yaml
+kubectl get pods -n kube-system --selector=k8s-app=cilium
 
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta6/nvidia-device-plugin.yml
