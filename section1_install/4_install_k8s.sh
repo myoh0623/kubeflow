@@ -10,5 +10,8 @@ deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
 sudo apt-get update
-sudo apt-get install -y kubelet=1.20.5-00 kubeadm=1.20.5-00 kubectl=1.20.5-00 --allow-downgrades --allow-change-held-packages
+sudo apt-get install -y kubelet=1.21.7-00 kubeadm=1.21.7-00 kubectl=1.21.7-00 --allow-downgrades --allow-change-held-packages
 sudo apt-mark hold kubelet kubeadm kubectl
+kubeadm version
+kubelet --version
+kubectl version --client
