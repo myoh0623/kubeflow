@@ -4,7 +4,7 @@ metadata:
   name: kubeflow-ingressgateway-certs
   namespace: istio-system
 spec:
-  commonName: banyastory.iptime.org
+  commonName: example.com #Domain name
   issuerRef:
     kind: ClusterIssuer
     name: kubeflow-self-signing-issuer
