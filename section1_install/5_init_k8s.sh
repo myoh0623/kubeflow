@@ -28,17 +28,24 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 kubectl get sc
 
 # install kusomize 
-wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
-mv kustomize_3.2.0_linux_amd64 kustomize
-sudo chmod 777 kustomize
-sudo mv kustomize /usr/local/bin
-
+# 
+if [ -e /usr/local/bin/kusomize ]
+  then
+    wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
+    mv kustomize_3.2.0_linux_amd64 kustomize
+    sudo chmod 777 kustomize
+    sudo mv kustomize /usr/local/bin
+fi
 # autocomplete k8s
-kubectl get pods -A
 
 
-sudo apt-get install bash-completion -y
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-echo 'alias k=kubectl' >>~/.bashrc
-echo 'complete -F __start_kubectl k' >>~/.bashrc
+package=$`dpkg -l | grep bash-completion`
+
+if [ ${#package} -gt 1 ]
+  then
+    sudo apt-get install bash-completion -y
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
+    echo 'alias k=kubectl' >>~/.bashrc
+    echo 'complete -F __start_kubectl k' >>~/.bashrc
+fi
 /bin/bash
