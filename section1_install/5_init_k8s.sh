@@ -29,19 +29,18 @@ kubectl get sc
 
 # install kusomize 
 # 
-if [ -f /usr/local/bin/kusomize ]
+if [ ! -f /usr/local/bin/kusomize ]
   then
     wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
     mv kustomize_3.2.0_linux_amd64 kustomize
     sudo chmod 777 kustomize
     sudo mv kustomize /usr/local/bin
 fi
+
 # autocomplete k8s
-
-
 package=$`dpkg -l | grep bash-completion`
 
-if [ ${#package} -gt 1 ]
+if [ ! ${#package} -gt 1 ]
   then
     sudo apt-get install bash-completion -y
     echo 'source <(kubectl completion bash)' >>~/.bashrc
