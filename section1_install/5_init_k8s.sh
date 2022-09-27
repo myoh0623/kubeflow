@@ -38,12 +38,12 @@ fi
 
 
 # autocomplete k8s
-package=$`dpkg -l | grep bash-completion`
+shellname=`echo $SHELL | rev | cut -d '/' -f1 | rev`
+shellconf=`echo ~/.\${shellname}rc`
+grep -n "kubectl completion" $shellconf
 
-if [ ! ${#package} -gt 1 ]
+if [ $? = 1 ]
   then
-    shellname=`echo $SHELL | rev | cut -d '/' -f1 | rev`
-    shellconf=`echo ~/.\${shellname}rc`
     sudo apt-get install bash-completion -y
     echo 'source <(kubectl completion '$shellname')' >>$shellconf
     echo 'alias k=kubectl' >>$shellconf
