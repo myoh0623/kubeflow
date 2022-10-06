@@ -53,4 +53,3 @@ if [ $? = 1 ]
     echo 'complete -F __start_kubectl k' >>$shellconf
 fi
 $SHELL
-$SHELL
