@@ -1,11 +1,11 @@
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
-  name: profileName
+  name: namespace1   # replace with the name of profile you want, this will be user's namespace name
+spec:
   owner:
     kind: User
-    name: userid@email.com
-
+    name: user1@email.com   # replace with the email of the user
   resourceQuotaSpec:
    hard:
      cpu: "6"
@@ -13,3 +13,4 @@ metadata:
      requests.nvidia.com/gpu: "1"
      persistentvolumeclaims: "4"
      requests.storage: "50Gi"
+     
