@@ -11,6 +11,6 @@ spec:
      cpu: "6"
      memory: "16Gi"
      requests.nvidia.com/gpu: "1"
-     persistentvolumeclaims: "4"
-     requests.storage: "50Gi"
+     persistentvolumeclaims: "10"
+     requests.storage: "100Gi"
      
