@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-custom-config
+  namespace: knative-monitoring
+  labels:
+    serving.knative.dev/release: "v0.18.0"
+data:
+  custom.ini: |
+    # You can customize Grafana via changing the context of this field.
+    [auth.anonymous]
+    # enable anonymous access
+    enabled = true
+    [security]
+    allow_embedding = true
+    [server]
+    root_url = "/grafana"
+    serve_from_sub_path = true  
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana
+  namespace: knative-monitoring
+spec:
+  gateways:
+  - kubeflow/kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /grafana/
+    route:
+    - destination:
+        host: grafana.knative-monitoring.svc.cluster.local
+        port:
+          number: 30802
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: models-web-app
+  namespace: kubeflow
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
+  selector:
+    matchLabels:
+      kustomize.component: kserve-models-web-app
+      app.kubernetes.io/component: kserve-models-web-app  
