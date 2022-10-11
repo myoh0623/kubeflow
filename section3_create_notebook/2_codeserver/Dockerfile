@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/codeserver-python:v1.5
+FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/codeserver-python:v1.5.0
 
 USER root 
 RUN apt-get update && apt-get install -y --no-install-recommends \
