@@ -29,7 +29,7 @@ kubectl get sc
 
 # install kusomize 
 # 
-if [ -f /usr/local/bin/kusomize ]
+if [ ! -f /usr/local/bin/kusomize ]
   then
     echo "kustomize"
     wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
