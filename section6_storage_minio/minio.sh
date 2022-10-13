@@ -1,0 +1,1 @@
+while true; do kubectl -n kubeflow port-forward  --address="0.0.0.0" svc/minio-service 9000:9000; done
