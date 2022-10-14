@@ -1,0 +1,15 @@
+apiVersion: "serving.kserve.io/v1beta1"
+kind: "InferenceService"
+metadata:
+  annotations:
+    sidecar.istio.io/inject: "false"
+  name: "mobilenet-v2-transformer"
+spec:
+  predictor:
+    serviceAccountName: 'sa'
+    tensorflow:
+      image: "tensorflow/serving:2.5.1"
+      storageUri: "s3://kserve/models/mobilenet_v2"
+  transformer:
+    containers:
+      - image: "apollo11plus/image-transformer:v1.5"
