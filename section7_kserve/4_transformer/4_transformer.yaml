@@ -12,4 +12,4 @@ spec:
       storageUri: "s3://kserve/models/mobilenet_v2"
   transformer:
     containers:
-      - image: "apollo11plus/image-transformer:v1.5"
+      - image: "myoh0623/image-transformer:1.0"
