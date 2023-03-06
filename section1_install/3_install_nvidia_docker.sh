@@ -9,25 +9,20 @@ sudo docker run --runtime nvidia nvidia/cuda:10.1-base /usr/bin/nvidia-smi
 
 sudo bash -c 'cat <<EOF > /etc/docker/daemon.json
 {
-    "default-runtime": "nvidia",
-    "runtimes": {
-        "nvidia": {
+    "exec-opts": ["native.cgroupdriver=systemd"],
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-size": "100m"
+    },
+    "data-root": "/mnt/storage/docker_data",
+    "storage-driver": "overlay2",
+    "default-runtime" : "nvidia",
+    "runtimes" : {
+        "nvidia" : {
             "path": "/usr/bin/nvidia-container-runtime",
-            "runtimeArgs": []
+            "runtimeArgs" : []
         }
     }
-}
-
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2",
-  "storage-opts": [
-    "overlay2.override_kernel_check=true"
-  ]
 }
 EOF'
 sudo systemctl restart docker
